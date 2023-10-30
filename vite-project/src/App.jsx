@@ -7,7 +7,6 @@ import Home from './pages/Home'
 import Service from './pages/Service'
 import Login from './pages/Login'
 import { Routes,Route } from 'react-router-dom';
-import EditForm from './pages/EditForm'
 import Order from './pages/Order'
 import Form from './pages/Form/index'
 import ChatAI from './pages/ChatAI'
@@ -27,7 +26,6 @@ function App() {
 
         {/* <Route path="/" element={<Login />} /> */}
         <Route path="/Booking" element={<Form />}/>
-        <Route path="/EditBooking" element={<EditForm />} />
         <Route path="/OrderRiwayat" element={<Order />} />
 
         
