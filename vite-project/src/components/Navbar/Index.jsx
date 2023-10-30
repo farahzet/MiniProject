@@ -12,47 +12,14 @@ const Navbar = () => {
             navigate("/Service");
         } else if (route === "AboutUs") {
             navigate("/AboutUs");
+        } else if (route === "ChatAI") {
+            navigate("/ChatAI");
         } else if (route === "Login") {
             navigate("/Login");
         } else {
         }
     }
 
-    // return(
-    //    <nav>
-    //     <div className="navbar">
-    //         <div className="logo" style={{ color: 'white' }}>
-    //             <h2>
-    //             <b>ZetShoes</b>
-    //             </h2>
-    //         </div>
-    //         <div id="menu">
-    //         <ul className="nav justify-content-end">
-    //             <li className="nav-item">
-    //             <a className="nav-link" href="" onClick={() => handleNavigation("Landing")} style={{ color: 'white' }}>
-    //                 Home
-    //             </a>
-    //             </li>
-                // <li className="nav-item">
-                //     <a className="nav-link" href=""  onClick={() => handleNavigation("AboutUs")} style={{ color: 'white' }}>
-                //     About
-                //     </a>
-                // </li>
-                // <li className="nav-item">
-                //     <a className="nav-link" href="" onClick={() => handleNavigation("Service")} style={{ color: 'white' }}>
-                //     Service
-                //     </a>
-                // </li>
-                // <li className="nav-item">
-                //     <a className="nav-link" href="" onClick={() => handleNavigation("Login")} style={{ color: 'white' }}>
-                //     Login
-                //     </a>
-                // </li>
-    //         </ul>
-    //         </div>
-    //         </div>
-    //    </nav>
-    // )
 
     return(
         <nav className="navbar navbar-expand-lg bg-black">
@@ -86,6 +53,11 @@ const Navbar = () => {
                     <li className="nav-item">
                         <a className="nav-link" href="" onClick={() => handleNavigation("Service")} style={{ color: 'white' }}>
                             Service
+                        </a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="" onClick={() => handleNavigation("ChatAI")} style={{ color: 'white' }}>
+                            ChatAI
                         </a>
                     </li>
                     <li className="nav-item">

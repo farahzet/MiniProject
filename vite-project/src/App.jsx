@@ -10,6 +10,7 @@ import { Routes,Route } from 'react-router-dom';
 import EditForm from './pages/EditForm'
 import Order from './pages/Order'
 import Form from './pages/Form/index'
+import ChatAI from './pages/ChatAI'
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -21,12 +22,15 @@ function App() {
         <Route path="/Landing" element={<LandingPage />} />
         <Route path="/AboutUs" element={<Home />} />
         <Route path="/Service" element={<Service />} />
+        <Route path="/ChatAI" element={<ChatAI/>} />
         <Route path="/Login" element={<Login />} />
 
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/Booking" element={<Form />}/>
         <Route path="/EditBooking" element={<EditForm />} />
         <Route path="/OrderRiwayat" element={<Order />} />
+
+        
 
 
 

@@ -2,14 +2,16 @@ import { useNavigate } from 'react-router-dom'
 import Logo from '../../assets/sepatu1.png'
 import NavbarUser from '../../components/NavbarUser'
 import './Form.css'
-import React, { useState } from 'react'
-import EditForm from '../EditForm'
+import React, { useEffect, useState } from 'react'
+import { getForm, sendForm } from '../../api/index';
+
 
 
 function Form () {
     const navigate = useNavigate();
 
     const [form, setForm] = useState([]);
+    const [HapusData, setHapusData] = useState(null);
     const [newform, setNewForm] = useState({
         namecust: '',
         alamat: '',
@@ -28,6 +30,17 @@ function Form () {
     const [AntarJemputError, setAntarJemputError] = useState('');
     const [ServiceError, setServiceError] = useState('');
 
+    useEffect(() => {
+        getForm()
+        .then((res) =>{
+            setForm(res.data)
+            console.log(res.data)
+        })
+        .catch((er) =>{
+            console.log(er)
+        })
+    }, [])
+
 
 
     // function handleClick(){
@@ -39,11 +52,13 @@ function Form () {
     // }
 
     // const handleCheckbox = (e) => {
-    //     const { name, checked } = e.target;
-    //     setNewForm({
-    //         ...newform,
-    //         [name]: checked,
-    //     });
+    //     const { name, value, checked } = e.target;
+
+    //     if (checked) {
+    //         setSelectedServices([...selectedServices, value]);
+    //     } else {
+    //         setSelectedServices(selectedServices.filter(service => service !== value));
+    //     }
     // };
 
     const handleInputChange = (e) => {
@@ -55,7 +70,20 @@ function Form () {
     };
 
     const handleSubmit = (e) => {
+        // console.log("masuk geh")
         e.preventDefault();
+
+        // sendForm(newform)
+        // .then((res) =>{
+            
+        //     // setForm(res.data)
+        //     console.log('Data berhasil tersimpan di API => ', res.data)
+        //     // navigate('/OrderRiwayat')
+        // })
+        // .catch((er) =>{
+        //     console.log('Ada Kesalahan dalam code', er)
+        // })
+
 
         const namacustRegex = /^[a-zA-Z\s]+$/; 
 
@@ -103,8 +131,18 @@ function Form () {
             newform.deks&&
             namacustRegex.test(newform.namecust)
         ){
-            
+            sendForm(newform)
+            .then((res) =>{
+                
+                // setForm(res.data)
+                console.log('Data berhasil tersimpan di API => ', res.data)
+                navigate('/OrderRiwayat')
+            })
+            .catch((er) =>{
+                console.log('Ada Kesalahan dalam code', er)
+            })
 
+            setForm([...form, newform]);
             setNewForm({
                 namecust: '',
                 alamat: '',
@@ -115,37 +153,13 @@ function Form () {
                 service: '',
                 deks: '',
         });
-        } 
-    };
+    } else{
+        window.alert("Data Belom Lengkap")
+    }
     
+    };
 
-    const [editForm, setEditForm] = useState(-1); // Initially, not in edit mode
-    const [editMode, setEditMode] = useState(false);
-
-    const handleClick = () => {
-        setEditForm(index);
-        setEditMode(true);
-        setNewForm(form[index]);
-    }
-
-    const handleSave = () => {
-        const updatedForm = [...form];
-        updatedForm[editForm] = newform;
-        setForm(updatedForm);
-
-        setEditForm(-1);
-        setEditMode(false);
-        setNewForm({
-            namecust: '',
-            alamat: '',
-            Quantity: '',
-            date: '',
-            AntarJemput: '',
-            jam: '',
-            service: '',
-            deks: '',
-        });
-    }
+    
 
     return(
         <section className="PageForm">
@@ -227,6 +241,7 @@ function Form () {
                                 />
                                 <p id="QuantityError" style={{ color: "red" }}>{QuantityError}</p>
                                 </div>
+
                                 <div className="mb-3">
                                 <label htmlFor="date" className="form-label">
                                     Hari/Tanggal
@@ -243,6 +258,7 @@ function Form () {
                                 />
                                 <p id="TanggalError" style={{ color: "red" }}>{TanggalError}</p>
                                 </div>
+                                
                                 <div className="mb-3">
                                 <label htmlFor="AntarJemput" className="form-label">
                                     Antar Jemput
@@ -278,6 +294,7 @@ function Form () {
                                 </div>
                                 <p id="AntarJemputError" style={{ color: "red" }}>{AntarJemputError}</p>
                                 </div>
+
                                 <div className="mb-3">
                                 <label htmlFor="jam" className="form-label">
                                     Jam&amp; PickUp
@@ -294,6 +311,56 @@ function Form () {
                                 />
                                 </div>
 
+                                <div className="mb-3">
+                                <label htmlFor="service" className="form-label">
+                                    Service
+                                </label>
+                                <br />
+                                <div className="form-check-inline">
+                                    <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="service"
+                                    id="StandardClean"
+                                    value="Standard Clean"
+                                    checked={newform.service === "Standard Clean"}
+                                    onChange={handleInputChange}
+                                    />
+                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                    Standard Clean
+                                    </label>
+                                </div>
+                                <div className="form-check-inline">
+                                    <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="service"
+                                    value="DeepClean"
+                                    id="Deep Clean"
+                                    checked={newform.service === "Deep Clean"}
+                                    onChange={handleInputChange}
+                                    />
+                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                    Deep Clean
+                                    </label>
+                                </div>
+                                <div className="form-check-inline">
+                                    <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="service"
+                                    value="KidsShoes"
+                                    id="Kids Shoes"
+                                    checked={newform.service === "Kids Shoes"}
+                                    onChange={handleInputChange}
+                                    />
+                                    <label className="form-check-label" htmlFor="flexRadioDefault3">
+                                    Kids Shoes
+                                    </label>
+                                </div>
+                                <p id="ServiceError" style={{ color: "red" }}>{ServiceError}</p>
+                                </div>
+
                                 {/* <div className="mb-3">
                                 <label htmlFor="JasaService" className="form-label">
                                     Jasa Service
@@ -302,9 +369,10 @@ function Form () {
                                     <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    name='JasaService'
+                                    name='service'
                                     id="DeepClean"
                                     value="Deep Clean"
+                                    checked={selectedServices.includes("Deep Clean")}
                                     onChange={handleInputChange}
                                     />
                                     <label className="form-check-label" htmlFor="Deep Clean">
@@ -315,9 +383,10 @@ function Form () {
                                     <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    name='JasaService'
+                                    name='service'
                                     id="StandardClean"
                                     value="Standard Clean"
+                                    checked={selectedServices.includes("Standard Clean")}
                                     onChange={handleInputChange}
                                     />
                                     <label className="form-check-label" htmlFor="Standard Clean">
@@ -328,9 +397,10 @@ function Form () {
                                     <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    name='JasaSevice'
+                                    name='service'
                                     id="Kids Shoes"
                                     value="Kids Shoes"
+                                    checked={selectedServices.includes("Kids Shoes")}
                                     onChange={handleInputChange}
                                     />
                                     <label className="form-check-label" htmlFor="Kids Shoes">
@@ -339,6 +409,7 @@ function Form () {
                                 </div>
                                 <p id="ServiceError" style={{ color: "red" }}>{ServiceError}</p>
                                 </div> */}
+                                
 
                                 <div className="mb-3">
                                 <label htmlFor="deks" className="form-label">
@@ -367,75 +438,8 @@ function Form () {
                                 
                                 </div>
 
-                                {/* <div
-                                    className="modal fade"
-                                    id="staticBackdrop"
-                                    data-bs-backdrop="static"
-                                    data-bs-keyboard="false"
-                                    tabIndex={-1}
-                                    aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true"
-                                    >
-                                    <div className="modal-dialog">
-                                        <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                                            Konfirmasi
-                                            </h1>
-                                            <button
-                                            type="button"
-                                            className="btn-close"
-                                            data-bs-dismiss="modal"
-                                            aria-label="Close"
-                                            />
-                                        </div>
-                                        <div className="modal-body">Apakah Data Yang Anda Masukkan Benar ?</div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-outline-success" onClick={handleClick}>
-                                            Edit
-                                            </button>
-                                            <button type="button" className="btn btn-outline-primary" onClick={handleClickForm}>
-                                            Submit
-                                            </button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div> */}
-
                             </form>
-                            <div className="ListTable" marginTop={100}>
-                                <table
-                                className="table table-bordered table-striped table-hover" id='CreateOrder'>
-                                <thead>
-                                    <tr style={{ textAlign: "center" }}>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Nama Customer</th>
-                                    <th scope="col">Antar Jemput</th>
-                                    <th scope="col">Service</th>
-                                    <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {form.map((product, index)=>(
-                                        <tr key={index}>
-                                            <td>{index + 1}</td>
-                                            <td>{product.date}</td>
-                                            <td>{product.namecust}</td>
-                                            <td>{product.AntarJemput}</td>
-                                            {/* <td>{product.service}</td> */}
-                                            <td>
-                                                <button className="btn btn-danger" onClick={()=> handleDelete(index)}>Delete</button>
-                                                <button className="btn btn-outline-primary">Edit</button>
-                                                {/* <button className="btn btn-info" onClick={() => handleClick(product.id)}>Detail</button> */}
-                                                <Link to={`/detail/${index}`} className="btn btn-info"> Detail</Link>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                                </table>
                             
-                                </div>
 
                             
                             </div>

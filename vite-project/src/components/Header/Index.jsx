@@ -7,17 +7,22 @@ import Wash from '../../assets/WashingMachine.png'
 import Login from '../../assets/Login.png'
 import PickUp from '../../assets/PickUp.png'
 import Form from '../../assets/Formulir.png'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
+    const navigate = useNavigate;
+
     function handleClick(){
+        navigate("/Login")
     }
+
     return(
         <section className='Hero'>
             <div className="content">
                 <div id="content_left">
                     <h1>Jasa Loundry Sepatu </h1>
                     <h1>Premium dan Cepat </h1>
-                    <button type="button" class="btn btn-dark">Booking Now</button>
+                    <button onClick={handleClick} class="btn btn-dark">Booking Now</button>
                     <hr size="10px"></hr>   
                 </div>
                 <div id="content_right">

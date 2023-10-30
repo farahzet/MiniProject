@@ -12,7 +12,7 @@ function Footer(){
                 </h4>
                 <p>ZetShoes Loundry</p>
                 <p>Loundry Sepatu / Jasa Cuci Sepatu</p>
-                <p>Workshop Yogyakarta Mangga Dua Lt. UG B No. 29-30 – Ancol, Jakarta Utara</p>
+                <p>Workshop Yogyakarta Jl.Kaliurang no.59</p>
                 <div className="SocialMedia">
                 <a href="https://www.facebook.com/farahzahirotun.nisa.7/">
                     <i className="fa fa-facebook" />
@@ -49,8 +49,9 @@ function Footer(){
                 <h4>
                     <b>ZetShoes</b>
                 </h4>
-                <p>Funding freemium long tail hypotheses
-                first mover advantage assets ownership</p>
+                <p>Lebih Dekat Dengan Kami, Kritik 
+                    dan Saran Kami Tunggu!
+                </p>
                 <p>
                     <b>Phone : </b> +62 82264xxxxx
                 </p>
