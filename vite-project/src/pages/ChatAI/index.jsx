@@ -13,11 +13,11 @@ const ChatAI = () => {
     const [image, setImage] = useState("");
 
     const openai =  new OpenAI({
-        apiKey: "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",
-        // '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'
-        // apiKey: process.env.OPEN_AI_KEY,
-        dangerouslyAllowBrowser: true
+        apiKey: import.meta.env.VITE_OPENAI_KEY,
+        dangerouslyAllowBrowser: true  
     });
+
+   
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
