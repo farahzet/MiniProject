@@ -12,14 +12,14 @@ const Login = () => {
     const navigate = useNavigate() 
 
     const handleClickLogin = (e) => {
-        e.preventDefault()
-        if(email === 'farah@gmail.com' && password === 'farah123'){
-            localStorage.setItem(email, 'true')
-            alert('Login Succesfully!')
-            navigate('/Booking')
-        }else{
-        alert('Login Failed!')
-        setError('Email atau Password Salah')
+        e.preventDefault();
+        if (email === 'farah@gmail.com' && password === 'farah123') {
+            localStorage.setItem('isLoggedIn', 'true');
+            alert('Login Successfully!');
+            navigate('/Booking');
+        } else {
+            alert('Login Failed!');
+            setError('Email atau Password Salah');
         }
     }
 

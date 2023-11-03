@@ -24,15 +24,18 @@ function App() {
         <Route path="/ChatAI" element={<ChatAI/>} />
         <Route path="/Login" element={<Login />} />
 
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<Login />} />
         <Route path="/Booking" element={<Form />}/>
         <Route path="/OrderRiwayat" element={<Order />} />
 
-        
-
+        {/* <AuthContex>
+        <Route path="/Booking" element={<Form />} />
+        <Route path="/OrderRiwayat" element={<Order />} />
+        </AuthContex> */}
 
 
       </Routes>
+
     </>
   )
 

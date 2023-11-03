@@ -1,8 +1,14 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, redirect, useNavigate } from "react-router-dom"
 import React from "react"
 
 const NavbarUser = () => {
+
+    const navigate = useNavigate();
     
+    const handleUserLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        navigate('/Login');
+    };
 
     return(
         <nav className="navbar bg-light fixed-top">
@@ -52,10 +58,15 @@ const NavbarUser = () => {
                         </Link>
                     </li>
 
-                    <li className="nav-item">
-                        <Link className="nav-link active" to={"/Landing"}>
+                    {/* <li className="nav-item">
+                        <Link className="nav-link active" to={"/Login"}>
                         Logout
                         </Link>
+                    </li> */}
+
+                    <li className="nav-item">
+                    <button className="nav-link active" onClick={handleUserLogout}>Logout</button>
+                    <redirect to="/Login" />
                     </li>
                 
                     

@@ -23,7 +23,7 @@ const ChatAI = () => {
         e.preventDefault()
         setLoading(true)
         const res = await openai.chat.completions.create({
-            messages: [{ role: "system", content: command}],
+            messages: [{ role: "system", content: "Tata cara merawat sepatu adalah langkah-langkah penting untuk memastikan sepatu Anda tetap dalam kondisi baik. Berikut adalah beberapa panduan yang dapat Anda ikuti 1. Bersihkan sepatu secara teratur dengan sikat lembut dan air hangat untuk menghilangkan debu dan kotoran. 2. Hindari mencuci sepatu kulit secara berlebihan, gunakan pelumas kulit untuk menjaga kelembaban dan kilapnya. 3. Untuk sepatu olahraga atau sepatu kanvas, cuci tali sepatu dan insole secara terpisah"}]+command,
             model: "gpt-3.5-turbo",
             //max_tokens: 7,
             // temperature: 0,
@@ -36,15 +36,15 @@ const ChatAI = () => {
         setLoading(false)
     }
 
-    const handleGenerateImage = async (e) => {
-        e.preventDefault();
-        setLoading(true)
-        const img = await openai.images.generate({ prompt: command });
-        console.log(img.data[0].url)
-        setImage(img.data[0].url);
-        // console.log(result)
-        setLoading(false)
-      };
+    // const handleGenerateImage = async (e) => {
+    //     e.preventDefault();
+    //     setLoading(true)
+    //     const img = await openai.images.generate({ prompt: command });
+    //     console.log(img.data[0].url)
+    //     setImage(img.data[0].url);
+    //     // console.log(result)
+    //     setLoading(false)
+    //   };
     
 
     // const handleSubmit = async (e) =>{
@@ -75,12 +75,12 @@ const ChatAI = () => {
                 <div id="kotakChatAI">
                     <div id="kotak-content">
                         <div id="kotak-title">
-                            <h4>Tanyakan Apa Saja Seputar Loundry Sepatu</h4>
+                            <h4>Chat AI</h4>
                         </div>
                         <table align="center">
                             <label>
                                     <div class="form-floating">
-                                    <textarea className="form-control" placeholder="Leave a comment here" id="command" name="command" value={command}
+                                    <textarea className="form-control" placeholder="Tanyakan Apasaja Seputar Londry Sepatu" id="command" name="command" value={command}
                                     onChange={(e) => setCommand(e.target.value)}
                                     style={{ width: "600px", height: "100px" }}>
                                     </textarea>
@@ -94,9 +94,11 @@ const ChatAI = () => {
                                         Submit
                                     </button>
 
-                                    <button type="submit" className="btn btn-warning" onClick={(e) => handleGenerateImage(e)}>
+                                    <h4>Jawaban : </h4>
+
+                                    {/* <button type="submit" className="btn btn-warning" onClick={(e) => handleGenerateImage(e)}>
                                     Generate Image
-                                    </button>
+                                    </button> */}
                                     {
                                         loading ? (
                                             <ColorRing
@@ -115,7 +117,7 @@ const ChatAI = () => {
                                                             <p>{item.message.content}</p>
                                                         </div>
                                                     )) : <div></div>}
-                                                    <img src={image} width={250} alt="" />
+                                                    {/* <img src={image} width={250} alt="" /> */}
                                                 </div>
                                             )
                                     }
@@ -126,7 +128,6 @@ const ChatAI = () => {
                         </table>
                     </div>
                 </div>
-        <Footer />
         </section>
     )
 }
