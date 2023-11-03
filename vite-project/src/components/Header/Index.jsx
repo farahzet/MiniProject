@@ -7,14 +7,14 @@ import Wash from '../../assets/WashingMachine.png'
 import Login from '../../assets/Login.png'
 import PickUp from '../../assets/PickUp.png'
 import Form from '../../assets/Formulir.png'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
-    const navigate = useNavigate;
+    // const navigate = useNavigate;
 
-    function handleClick(){
-        navigate("/Login")
-    }
+    // function handleClick(){
+    //     navigate("/Login")
+    // }
 
     return(
         <section className='Hero'>
@@ -22,7 +22,7 @@ const Header = () => {
                 <div id="content_left">
                     <h1>Jasa Loundry Sepatu </h1>
                     <h1>Premium dan Cepat </h1>
-                    <button onClick={handleClick} class="btn btn-dark">Booking Now</button>
+                    <button class="btn btn-dark">Booking Now</button>
                     <hr size="10px"></hr>   
                 </div>
                 <div id="content_right">

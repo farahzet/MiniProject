@@ -1,9 +1,12 @@
-import { Link, redirect, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import React from "react"
+
 
 const NavbarUser = () => {
 
     const navigate = useNavigate();
+
+    
     
     const handleUserLogout = () => {
         localStorage.removeItem('isLoggedIn');
