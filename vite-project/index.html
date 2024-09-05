@@ -7,19 +7,21 @@
     <title>Vite + React</title>
 
     <script>
-      (function(w, d) {
-        var s, t;
-        var scriptElement = d.createElement('script');
-        scriptElement.src = 'https://cdn.maze.co/maze.js';
-        scriptElement.async = true;
-
-        s = d.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(scriptElement, s);
-
-        t = d.createElement('noscript');
-        t.innerHTML = '<img src="https://cdn.maze.co/track.gif" />';
-        d.getElementsByTagName('body')[0].appendChild(t);
-      })(window, document);
+      window.addEventListener('DOMContentLoaded', (event) => {
+        (function(w, d) {
+          var s, t;
+          var scriptElement = d.createElement('script');
+          scriptElement.src = 'https://cdn.maze.co/maze.js';
+          scriptElement.async = true;
+    
+          s = d.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(scriptElement, s);
+    
+          t = d.createElement('noscript');
+          t.innerHTML = '<img src="https://cdn.maze.co/track.gif" />';
+          d.getElementsByTagName('body')[0].appendChild(t);
+        })(window, document);
+      });
     </script>
   </head>
   <body>
