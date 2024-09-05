@@ -7,19 +7,23 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom';
 
 (function(m,a,z,e){
-  var s,t;o=a.createElement('script');o.src='https://cdn.maze.co/maze.js';o.async=true;
-  s=a.getElementsByTagName('script')[0];s.parentNode.insertBefore(o,s);
-  t=m.createElement('noscript');t.innerHTML='<img src="https://cdn.maze.co/track.gif" />';
+  var s, t;
+  var o = a.createElement('script');  // Deklarasikan variabel 'o'
+  o.src = 'https://cdn.maze.co/maze.js';
+  o.async = true;
+  s = a.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(o, s);
+  
+  t = m.createElement('noscript');
+  t.innerHTML = '<img src="https://cdn.maze.co/track.gif" />';
   a.getElementsByTagName('body')[0].appendChild(t);
-})(window,document);
+})(window, document);
 
+// Render aplikasi React dengan benar
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+      <App />
     </BrowserRouter>
-
-    {/* <App/> */}
   </React.StrictMode>
-  document.getElementById('root')
-)
+);
