@@ -6,17 +6,20 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './index.css'
 import { BrowserRouter } from 'react-router-dom';
 
-(function(m,a,z,e){
+
+// Memasang kode Maze dengan benar
+(function(w, d) {
   var s, t;
-  var o = a.createElement('script');  // Deklarasikan variabel 'o'
-  o.src = 'https://cdn.maze.co/maze.js';
-  o.async = true;
-  s = a.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(o, s);
+  var scriptElement = d.createElement('script');  // Buat elemen script baru
+  scriptElement.src = 'https://cdn.maze.co/maze.js';
+  scriptElement.async = true;
   
-  t = m.createElement('noscript');
+  s = d.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(scriptElement, s);
+  
+  t = d.createElement('noscript');
   t.innerHTML = '<img src="https://cdn.maze.co/track.gif" />';
-  a.getElementsByTagName('body')[0].appendChild(t);
+  d.getElementsByTagName('body')[0].appendChild(t);
 })(window, document);
 
 // Render aplikasi React dengan benar
